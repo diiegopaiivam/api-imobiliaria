@@ -37,6 +37,20 @@ class Imoveis extends REST_Controller
         }
     }
 
+    public function finalidade_get($finalidade){
+        if(!$finalidade){
+            $this->response(null, 404);
+        }
+
+        $imoveis = $this->imovel->getImovelFinalidade($finalidade);
+
+        if(!is_null($imoveis)){
+            $this->response(array('response' => $imoveis), 200);
+        } else {
+            $this->response(array('error' => 'Imóvel não encontrado'), 404);
+        }
+    }
+
     public function index_post()
     {
        

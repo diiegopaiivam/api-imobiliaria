@@ -15,9 +15,10 @@ class Imovel extends CI_Model
     {
         parent::__construct();
     }
-
+    // captar todos os imóveis pelo id, caso o usuario passe o mesmo, caso não passe ele pega todos os imóveis
     public function get($id = null)
-    {
+    {   
+        //método que verifica se o id não está nulo, se não tiver ele capta pelo id
         if (!is_null($id)) {
             $query = $this->db->select('*')->from('imoveis')->where('id_imovel', $id)->get();
             if ($query->num_rows() === 1) {
@@ -26,7 +27,7 @@ class Imovel extends CI_Model
 
             return null;
         }
-
+        //método que capta todos os imóveis da tabela
         $query = $this->db->select('*')->from('imoveis')->get();
         if ($query->num_rows() > 0) {
             return $query->result_array();
@@ -35,6 +36,15 @@ class Imovel extends CI_Model
         return null;
     }
 
+    //método que capta os imóveis pela finalidade
+    public function getImovelFinalidade ($finalidade = null){
+        $query = $this->db->select('*')->from('imoveis')->where('finalidade', $finalidade)->get();
+        if ($query->num_rows() > 0){
+            return $query->result_array();
+        }
+
+        return null;
+    }
     public function save($imovel)
     {
         $this->db->set($this->_setImovel($imovel))->insert('imoveis');

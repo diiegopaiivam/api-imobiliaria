@@ -56,6 +56,7 @@ $route['translate_uri_dashes'] = TRUE;
 // Rotas para imóveis
 $route['imoveis']['get'] = 'imoveis/index';
 $route['imoveis/(:num)']['get'] = 'imoveis/find/$1';
+$route['imoveis/(:num)']['get'] = 'imoveis/finalidade/$1';
 $route['imoveis']['post'] = 'imoveis/index';
 $route['imoveis/(:num)']['put'] = 'imoveis/index/$1';
 $route['imoveis/(:num)']['delete'] = 'imoveis/index/$1';
