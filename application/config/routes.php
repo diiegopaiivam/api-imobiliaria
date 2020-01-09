@@ -61,6 +61,7 @@ $route['imoveis']['post'] = 'imoveis/index';
 $route['imoveis/(:num)']['put'] = 'imoveis/index/$1';
 $route['imoveis/(:num)']['delete'] = 'imoveis/index/$1';
 $route['imoveis/(:bairro)']['get'] = 'imoveis/bairro/$benfica';
+$route['imoveis/(:num)']['get'] = 'imoveis/caracteristica/$1';
 
 
 

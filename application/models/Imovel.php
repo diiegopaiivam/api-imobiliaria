@@ -57,6 +57,23 @@ class Imovel extends CI_Model
         return null;
     }
 
+    public function getImovelCaracteristicas($id){
+
+        $this->db->select('*');
+        $this->db->from('imoveis');
+        $this->db->join('caracteristicas', 'imoveis.id_imovel = caracteristicas.id_imovel');
+        $query = $this->db->get();
+
+        
+ 
+        if ($query->num_rows() > 0){
+            return $query->result_array();
+        }
+
+        return null;
+       
+    }
+
     public function save($imovel)
     {
         $this->db->set($this->_setImovel($imovel))->insert('imoveis');

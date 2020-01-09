@@ -72,6 +72,20 @@ class Imoveis extends REST_Controller
         }
     }
 
+    public function caracteristica_get($id){
+        if (!$id){
+            $this->response(null, 404);
+        }
+     
+        $imoveis = $this->imovel->getImovelCaracteristicas($id);
+
+        if(!is_null($imoveis)){
+            $this->response(array('response' => $imoveis), 200);
+        } else {
+            $this->response(array('error' => 'Nenhuma caracteristica foi encontrado'));
+        }
+    }
+
     public function index_post()
     {
        
