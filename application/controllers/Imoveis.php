@@ -60,8 +60,9 @@ class Imoveis extends REST_Controller
         if (!$bairro){
             $this->response('Digite o nome do bairro', 404);
         }
+
         str_replace('_', ' ', $bairro);
-        echo "<pre>";print_r($bairro);die;
+        
         $imoveis = $this->imovel->getImovelBairro($bairro);
 
         if(!is_null($imoveis)){
