@@ -61,7 +61,6 @@ class Imovel extends CI_Model
     public function getImovelCaracteristicas($id){
 
         $query = $this->db->query("SELECT caracteristica FROM `caracteristicas` WHERE id_imovel = $id");
-        // $query = $this->db->select('caracteristica')->from('caracteristicas')->where('id_imovel', $id)->get();
         $i = 0;
         // $caracteristicas = [];
         if ($query->num_rows() > 0){
@@ -70,6 +69,17 @@ class Imovel extends CI_Model
         
         return null;
        
+    }
+
+    public function getImovelDetalhes($id){
+
+        $query = $this->db->query("SELECT quartos, banheiros, vagas, salas, cozinhas FROM `detalhes` WHERE id_imovel = $id");
+
+        if($query->num_rows() > 0){
+            return $query->result_array();
+        }
+
+        return null;
     }
 
     public function save($imovel)

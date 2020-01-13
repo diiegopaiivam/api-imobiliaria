@@ -82,9 +82,10 @@ class Imoveis extends REST_Controller
 
         $imoveis = $this->imovel->get($id);
         $caracteristica = $this->imovel->getImovelCaracteristicas($id);
+        $detalhes = $this->imovel->getImovelDetalhes($id);
 
         if(!is_null($imoveis)){
-            $this->response(array('response' => $imoveis, 'caracteristicas' => $caracteristica), 200);
+            $this->response(array('Imovel' => $imoveis, 'caracteristicas' => $caracteristica, 'detalhes' => $detalhes), 200);
         } else {
             $this->response(array('error' => 'Nenhuma caracteristica foi encontrado'), 404);
         }
@@ -96,6 +97,20 @@ class Imoveis extends REST_Controller
         }
      
         $imoveis = $this->imovel->getImovelCaracteristicas($id);
+
+        if(!is_null($imoveis)){
+            $this->response(array('response' => $imoveis), 200);
+        } else {
+            $this->response(array('error' => 'Nenhuma caracteristica foi encontrado'), 404);
+        }
+    }
+
+    public function detalhes_get($id){
+        if(!$id){
+            $this->response("É obrigatório a utilização do ID", 404);
+        }
+
+        $imoveis = $this->imovel->getImovelDetalhes($id);
 
         if(!is_null($imoveis)){
             $this->response(array('response' => $imoveis), 200);
