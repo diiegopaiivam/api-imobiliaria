@@ -68,7 +68,25 @@ class Imoveis extends REST_Controller
         if(!is_null($imoveis)){
             $this->response(array('response' => $imoveis), 200);
         } else {
-            $this->response(array('error' => 'Nenhum imóvel foi encontrado'));
+            $this->response(array('error' => 'Nenhum imóvel foi encontrado'), 404);
+        }
+    }
+
+    //seleciona os imóveis com as caracteristicas
+
+    public function imoveiscarac_get($id){
+
+        if(!$id){
+            $this->response(null, 404);
+        }
+
+        $imoveis = $this->imovel->get($id);
+        $caracteristica = $this->imovel->getImovelCaracteristicas($id);
+
+        if(!is_null($imoveis)){
+            $this->response(array('response' => $imoveis, 'caracteristicas' => $caracteristica), 200);
+        } else {
+            $this->response(array('error' => 'Nenhuma caracteristica foi encontrado'), 404);
         }
     }
 
@@ -82,7 +100,19 @@ class Imoveis extends REST_Controller
         if(!is_null($imoveis)){
             $this->response(array('response' => $imoveis), 200);
         } else {
-            $this->response(array('error' => 'Nenhuma caracteristica foi encontrado'));
+            $this->response(array('error' => 'Nenhuma caracteristica foi encontrado'), 404);
+        }
+    }
+
+    public function caracteristica_post(){
+
+        $caracteristicas = $this->input->post();
+        $salvar = $this->db->insert('caracteristicas', $caracteristicas);
+
+        if(!is_null($imoveis)){
+            $this->response(array('Imóvel cadastrado com sucesso!' => $salvar), 200);
+        } else {
+            $this->response(array('error' => 'Nenhuma caracteristica foi encontrado'), 404);
         }
     }
 

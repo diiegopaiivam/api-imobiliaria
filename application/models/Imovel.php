@@ -4,12 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Imovel extends CI_Model
 {
 
-    public $endereco;         
-    public $numero;            
-    public $bairro;            
-    public $finalidade;        
-    public $cep;              
-    public $tipo;
+    public $endereco = "";         
+    public $numero = 0;            
+    public $bairro = "";            
+    public $finalidade = 0;        
+    public $cep = 0;              
+    public $tipo = "";
+    public $caracteristica = "";
 
     public function __construct()
     {
@@ -59,17 +60,14 @@ class Imovel extends CI_Model
 
     public function getImovelCaracteristicas($id){
 
-        $this->db->select('*');
-        $this->db->from('imoveis');
-        $this->db->join('caracteristicas', 'imoveis.id_imovel = caracteristicas.id_imovel');
-        $query = $this->db->get();
-
-        
- 
+        $query = $this->db->query("SELECT caracteristica FROM `caracteristicas` WHERE id_imovel = $id");
+        // $query = $this->db->select('caracteristica')->from('caracteristicas')->where('id_imovel', $id)->get();
+        $i = 0;
+        // $caracteristicas = [];
         if ($query->num_rows() > 0){
             return $query->result_array();
         }
-
+        
         return null;
        
     }
