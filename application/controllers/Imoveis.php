@@ -113,7 +113,7 @@ class Imoveis extends REST_Controller
         $imoveis = $this->imovel->getImovelDetalhes($id);
 
         if(!is_null($imoveis)){
-            $this->response(array('response' => $imoveis), 200);
+            $this->response(array('Detalhes' => $imoveis), 200);
         } else {
             $this->response(array('error' => 'Nenhuma caracteristica foi encontrado'), 404);
         }

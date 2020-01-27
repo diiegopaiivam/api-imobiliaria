@@ -66,6 +66,10 @@ $route['imoveis/(:num)']['post'] = 'imoveis/caracteristica/$1';
 $route['imoveis/(:num)']['get'] = 'imoveis/imoveiscarac/$1';
 $route['imoveis/(:num)']['get'] = 'imoveis/detalhes/$1';
 
+//Rotas para Pessoa
+$route['pessoas']['get'] = 'pessoas/index';
+$route['pessoas']['post'] = 'pessoas/index';
+
 
 
 /*
